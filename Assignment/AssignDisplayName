@@ -1,1 +1,20 @@
-P\
+package Nikita;
+
+public class AssignDisplayName {
+ public void display()
+ {
+	 System.out.println("Nikita Yengade");
+ }
+}
+ class DisplayName{
+	public static void main(String[] args) {
+		
+     AssignDisplayName A=new AssignDisplayName();
+     A.display();
+	}
+ 
+}
+
+/*output
+*Nikita Yengade
+*/
