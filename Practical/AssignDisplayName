@@ -1,6 +1,6 @@
 package Nikita;
 
-public class AssiDisplayName {
+public class AssignDisplayName {
  public void display()
  {
 	 System.out.println("Nikita Yengade");
@@ -9,11 +9,11 @@ public class AssiDisplayName {
  class DisplayName{
 	public static void main(String[] args) {
 		
-     AssiDisplayName A=new AssiDisplayName();
+     AssignDisplayName A=new AssignDisplayName();
      A.display();
 	}
  
 }
 
-****o/p****
+***output***
 Nikita Yengade
