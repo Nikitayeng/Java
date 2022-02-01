@@ -1,1 +1,19 @@
+package Nikita;
 
+public class AssiDisplayName {
+ public void display()
+ {
+	 System.out.println("Nikita Yengade");
+ }
+}
+ class DisplayName{
+	public static void main(String[] args) {
+		
+     AssiDisplayName A=new AssiDisplayName();
+     A.display();
+	}
+ 
+}
+
+****o/p****
+Nikita Yengade
