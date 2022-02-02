@@ -42,3 +42,13 @@ largest = num3;
 System.out.println("The largest number is = " + largest);
  }
 }
+/*output
+*Enter First Integer: 10
+*Enter Second Integer: 20
+*Enter Third Integer: 30
+*The sum is = 60
+*The average is = 20
+*The product is = 6000
+*The smallest number is = 10
+*The largest number is = 30
+*/
