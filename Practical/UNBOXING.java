@@ -22,8 +22,8 @@ int j=a;//unboxing, now compiler will write a.intValue() internally
   
 System.out.println(a+" "+i+" "+j);    
 }}
-*/ OUTPUT
+/*OUTPUT
 *3 3 3
-/*	
+*/	
 	
 	
