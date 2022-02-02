@@ -66,3 +66,22 @@ System.out.println("float value: "+floatvalue);
 System.out.println("double value: "+doublevalue);  
 System.out.println("boolean value: "+boolvalue);  
 }}
+/*OUTPUT
+*---Printing object values---
+*Byte object: 10
+*Short object: 20
+*Integer object: 30
+*Long object: 40
+*Float object: 50.0
+*Double object: 60.0
+*Character object: a
+*Boolean object: true
+*---Printing primitive values---
+*byte value: 10
+*short value: 20
+*int value: 30
+*long value: 40
+*float value: 50.0
+*double value: 60.0
+*boolean value: true
+*/
