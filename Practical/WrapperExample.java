@@ -13,3 +13,6 @@ Integer j=a;//autoboxing, now compiler will write Integer.valueOf(a) internally
 System.out.println(a+" "+i+" "+j);  
 }
 }
+/*output
+*20 20 20
+*/
