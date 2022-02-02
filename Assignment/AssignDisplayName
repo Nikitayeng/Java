@@ -1,4 +1,4 @@
-package Nikita;
+package nikita_code;
 
 public class AssignDisplayName {
  public void display()
