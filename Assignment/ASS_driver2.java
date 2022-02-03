@@ -1,6 +1,6 @@
 package nikita_code;
 
-public class ASS_driver {
+public class ASS_driver2 {
 
 	public static void main(String[] args) {
 	
