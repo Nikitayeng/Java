@@ -19,3 +19,6 @@ public class Ass_driver5 {
 	}
 
 }
+/*output
+ *0, 2, 4, 6, 8, 
+ */
