@@ -17,7 +17,13 @@ public class ASS_driver {
 		 		
 	}
 }
-		
+/*output
+ *Value : 0.5
+ *Value : 4.55
+ *Value : 1.15
+ *Value : 3.4
+ *Value : 1.75
+ */
 
 	
 
