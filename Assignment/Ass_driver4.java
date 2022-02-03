@@ -14,7 +14,12 @@ public class Ass_driver4 {
 		} 
 		} 
 		}
-
+/*output
+ * Value : 1
+ *Value : 4
+ *Value : 7
+ *Value : 10
+ */
 
 	
 
