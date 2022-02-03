@@ -12,3 +12,8 @@ public class MultiDIMENLength {
 	}
 
 }
+/*output
+ *length of row l:3
+ *length of row l:3
+ *length of row l:3
+ */ 
