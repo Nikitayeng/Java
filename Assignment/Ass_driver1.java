@@ -1,5 +1,5 @@
 package nikita_code;
-public class Driver 
+public class Ass_driver1 
 { 
 public static void main (String[] args) 
 {
