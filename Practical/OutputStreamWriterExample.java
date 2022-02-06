@@ -14,7 +14,7 @@ public class OutputStreamWriterExample {
       OutputStreamWriter osw = null;
       String data = "Testing OutputStreamWriter functionality";
       try {
-          fos = new FileOutputStream("D:\\\\monika\\\\test.txt");
+          fos = new FileOutputStream("D:\\\\Nikita\\\\test.txt");
          osw = new OutputStreamWriter(fos, "UTF-8");
           osw.write(data);
           osw.flush();
