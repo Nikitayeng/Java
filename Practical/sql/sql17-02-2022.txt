@@ -1,0 +1,394 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 20
+Server version: 8.0.21 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use org;
+Database changed
+mysql> select * from worker;
++-----------+------------+-----------+--------+---------------------+------------+
+| worker_id | first_name | last_name | salary | joining_date        | department |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2014-02-20 09:00:00 | HR         |
+|         2 | Niharika   | Verma     |  80000 | 2014-06-11 09:00:00 | Admin      |
+|         3 | Vishal     | Singhal   | 300000 | 2014-02-20 09:00:00 | HR         |
+|         4 | Amitabh    | Singh     | 500000 | 2014-02-20 09:00:00 | Admin      |
+|         5 | Vivek      | Bhati     | 500000 | 2014-06-11 09:00:00 | Admin      |
+|         6 | Vipul      | Diwan     | 200000 | 2014-06-11 09:00:00 | Account    |
+|         7 | Satish     | Kumar     |  75000 | 2014-01-20 09:00:00 | Account    |
+|         8 | Geetika    | Chauhan   |  90000 | 2014-04-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from student;
+ERROR 1146 (42S02): Table 'org.student' doesn't exist
+mysql> use monika;
+Database changed
+mysql> select * from student;
++----+--------+-------------+
+| id | name   | address     |
++----+--------+-------------+
+|  1 | monika | pune        |
+|  2 | Anuja  | pune(uruli) |
+|  3 | Akash  | Hadapsar    |
++----+--------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> update student set address='mumbai' where id=3;
+Query OK, 1 row affected (0.13 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++----+--------+-------------+
+| id | name   | address     |
++----+--------+-------------+
+|  1 | monika | pune        |
+|  2 | Anuja  | pune(uruli) |
+|  3 | Akash  | mumbai      |
++----+--------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> update student set address='mumbai',name='kajal' where id=3;
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++----+--------+-------------+
+| id | name   | address     |
++----+--------+-------------+
+|  1 | monika | pune        |
+|  2 | Anuja  | pune(uruli) |
+|  3 | kajal  | mumbai      |
++----+--------+-------------+
+3 rows in set (0.02 sec)
+
+mysql> alter table student add emailid varchar(30);
+Query OK, 0 rows affected (1.88 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++----+--------+-------------+---------+
+| id | name   | address     | emailid |
++----+--------+-------------+---------+
+|  1 | monika | pune        | NULL    |
+|  2 | Anuja  | pune(uruli) | NULL    |
+|  3 | kajal  | mumbai      | NULL    |
++----+--------+-------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> update student set emailid='gavtemonika@gmail.com' where id=1;
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++----+--------+-------------+-----------------------+
+| id | name   | address     | emailid               |
++----+--------+-------------+-----------------------+
+|  1 | monika | pune        | gavtemonika@gmail.com |
+|  2 | Anuja  | pune(uruli) | NULL                  |
+|  3 | kajal  | mumbai      | NULL                  |
++----+--------+-------------+-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> update student set emailid='anujagavate@gmail.com' where id=2;
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++----+--------+-------------+-----------------------+
+| id | name   | address     | emailid               |
++----+--------+-------------+-----------------------+
+|  1 | monika | pune        | gavtemonika@gmail.com |
+|  2 | Anuja  | pune(uruli) | anujagavate@gmail.com |
+|  3 | kajal  | mumbai      | NULL                  |
++----+--------+-------------+-----------------------+
+3 rows in set (0.01 sec)
+
+mysql> update student set emailid='kajal@gmail.com' where id=3;
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++----+--------+-------------+-----------------------+
+| id | name   | address     | emailid               |
++----+--------+-------------+-----------------------+
+|  1 | monika | pune        | gavtemonika@gmail.com |
+|  2 | Anuja  | pune(uruli) | anujagavate@gmail.com |
+|  3 | kajal  | mumbai      | kajal@gmail.com       |
++----+--------+-------------+-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> delete student where id=2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where id=2' at line 1
+mysql> delete from student where id=2;
+Query OK, 1 row affected (0.09 sec)
+
+mysql> select * from student;
++----+--------+---------+-----------------------+
+| id | name   | address | emailid               |
++----+--------+---------+-----------------------+
+|  1 | monika | pune    | gavtemonika@gmail.com |
+|  3 | kajal  | mumbai  | kajal@gmail.com       |
++----+--------+---------+-----------------------+
+2 rows in set (0.04 sec)
+
+mysql> alter table student drop column emailid;
+Query OK, 0 rows affected (2.68 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++----+--------+---------+
+| id | name   | address |
++----+--------+---------+
+|  1 | monika | pune    |
+|  3 | kajal  | mumbai  |
++----+--------+---------+
+2 rows in set (0.00 sec)
+
+***************************************user table*******************************************************
+
+
+mysql> create table user(id int primary key not null,name varchar(20) not null,mob_no int not null,branch varchar(20) not null,email varchar(30) not null);
+Query OK, 0 rows affected (0.71 sec)
+
+mysql> select * from user;
+Empty set (0.33 sec)
+
+mysql> desc user;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(20) | NO   |     | NULL    |       |
+| mob_no | int         | NO   |     | NULL    |       |
+| branch | varchar(20) | NO   |     | NULL    |       |
+| email  | varchar(30) | NO   |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.04 sec)
+
+mysql> insert into user values(1,'monika',71114929147,'pune','gavtemonika@gmail.com');
+ERROR 1264 (22003): Out of range value for column 'mob_no' at row 1
+mysql> insert into user values(1,'monika',7414929147,'pune','gavtemonika@gmail.com');
+ERROR 1264 (22003): Out of range value for column 'mob_no' at row 1
+mysql> insert into user values(1,'monika',741492,'pune','gavtemonika@gmail.com');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into user values(2,'anuja',70574097,'uruli','gavteanuja@gmail.com');
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into user values(3,'sakshi',770969,'theur','sakshi@gmail.com');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into user values(4,'akash',90118560,'loni','sakshi@gmail.com');
+Query OK, 1 row affected (0.18 sec)
+
+mysql> insert into user values(5,'komal',75855554,'hadapsar','komal@gmail.com');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> select * from user;
++----+--------+----------+----------+-----------------------+
+| id | name   | mob_no   | branch   | email                 |
++----+--------+----------+----------+-----------------------+
+|  1 | monika |   741492 | pune     | gavtemonika@gmail.com |
+|  2 | anuja  | 70574097 | uruli    | gavteanuja@gmail.com  |
+|  3 | sakshi |   770969 | theur    | sakshi@gmail.com      |
+|  4 | akash  | 90118560 | loni     | sakshi@gmail.com      |
+|  5 | komal  | 75855554 | hadapsar | komal@gmail.com       |
++----+--------+----------+----------+-----------------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table user add column address varchar(20),city varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'city varchar(20)' at line 1
+mysql> alter table user add column address varchar(20);
+Query OK, 0 rows affected (1.44 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from user;
++----+--------+----------+----------+-----------------------+---------+
+| id | name   | mob_no   | branch   | email                 | address |
++----+--------+----------+----------+-----------------------+---------+
+|  1 | monika |   741492 | pune     | gavtemonika@gmail.com | NULL    |
+|  2 | anuja  | 70574097 | uruli    | gavteanuja@gmail.com  | NULL    |
+|  3 | sakshi |   770969 | theur    | sakshi@gmail.com      | NULL    |
+|  4 | akash  | 90118560 | loni     | sakshi@gmail.com      | NULL    |
+|  5 | komal  | 75855554 | hadapsar | komal@gmail.com       | NULL    |
++----+--------+----------+----------+-----------------------+---------+
+5 rows in set (0.05 sec)
+
+mysql> alter table user add column city varchar(20);
+Query OK, 0 rows affected (0.97 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from user;
++----+--------+----------+----------+-----------------------+---------+------+
+| id | name   | mob_no   | branch   | email                 | address | city |
++----+--------+----------+----------+-----------------------+---------+------+
+|  1 | monika |   741492 | pune     | gavtemonika@gmail.com | NULL    | NULL |
+|  2 | anuja  | 70574097 | uruli    | gavteanuja@gmail.com  | NULL    | NULL |
+|  3 | sakshi |   770969 | theur    | sakshi@gmail.com      | NULL    | NULL |
+|  4 | akash  | 90118560 | loni     | sakshi@gmail.com      | NULL    | NULL |
+|  5 | komal  | 75855554 | hadapsar | komal@gmail.com       | NULL    | NULL |
++----+--------+----------+----------+-----------------------+---------+------+
+5 rows in set (0.00 sec)
+
+mysql> update user set address='marutimandir' where id=1;
+Query OK, 1 row affected (0.11 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from user;
++----+--------+----------+----------+-----------------------+--------------+------+
+| id | name   | mob_no   | branch   | email                 | address      | city |
++----+--------+----------+----------+-----------------------+--------------+------+
+|  1 | monika |   741492 | pune     | gavtemonika@gmail.com | marutimandir | NULL |
+|  2 | anuja  | 70574097 | uruli    | gavteanuja@gmail.com  | NULL         | NULL |
+|  3 | sakshi |   770969 | theur    | sakshi@gmail.com      | NULL         | NULL |
+|  4 | akash  | 90118560 | loni     | sakshi@gmail.com      | NULL         | NULL |
+|  5 | komal  | 75855554 | hadapsar | komal@gmail.com       | NULL         | NULL |
++----+--------+----------+----------+-----------------------+--------------+------+
+5 rows in set (0.00 sec)
+
+mysql> update user set city='mumbai' where id=1;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from user;
++----+--------+----------+----------+-----------------------+--------------+--------+
+| id | name   | mob_no   | branch   | email                 | address      | city   |
++----+--------+----------+----------+-----------------------+--------------+--------+
+|  1 | monika |   741492 | pune     | gavtemonika@gmail.com | marutimandir | mumbai |
+|  2 | anuja  | 70574097 | uruli    | gavteanuja@gmail.com  | NULL         | NULL   |
+|  3 | sakshi |   770969 | theur    | sakshi@gmail.com      | NULL         | NULL   |
+|  4 | akash  | 90118560 | loni     | sakshi@gmail.com      | NULL         | NULL   |
+|  5 | komal  | 75855554 | hadapsar | komal@gmail.com       | NULL         | NULL   |
++----+--------+----------+----------+-----------------------+--------------+--------+
+5 rows in set (0.04 sec)
+
+mysql> update user set address='sortapvadiphata',city='pune' where id=2;
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update user set address='uk 123',city='nashik' where id=3;
+Query OK, 1 row affected (0.23 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update user set address='ganpati temple',city='nagpur' where id=4;
+Query OK, 1 row affected (0.22 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update user set address='tarde gavatemala',city='mumbai' where id=5;
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from user;
++----+--------+----------+----------+-----------------------+------------------+--------+
+| id | name   | mob_no   | branch   | email                 | address          | city   |
++----+--------+----------+----------+-----------------------+------------------+--------+
+|  1 | monika |   741492 | pune     | gavtemonika@gmail.com | marutimandir     | mumbai |
+|  2 | anuja  | 70574097 | uruli    | gavteanuja@gmail.com  | sortapvadiphata  | pune   |
+|  3 | sakshi |   770969 | theur    | sakshi@gmail.com      | uk 123           | nashik |
+|  4 | akash  | 90118560 | loni     | sakshi@gmail.com      | ganpati temple   | nagpur |
+|  5 | komal  | 75855554 | hadapsar | komal@gmail.com       | tarde gavatemala | mumbai |
++----+--------+----------+----------+-----------------------+------------------+--------+
+5 rows in set (0.03 sec)
+
+mysql> update user set name='utkarsh' where id=1;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from user;
++----+---------+----------+----------+-----------------------+------------------+--------+
+| id | name    | mob_no   | branch   | email                 | address          | city   |
++----+---------+----------+----------+-----------------------+------------------+--------+
+|  1 | utkarsh |   741492 | pune     | gavtemonika@gmail.com | marutimandir     | mumbai |
+|  2 | anuja   | 70574097 | uruli    | gavteanuja@gmail.com  | sortapvadiphata  | pune   |
+|  3 | sakshi  |   770969 | theur    | sakshi@gmail.com      | uk 123           | nashik |
+|  4 | akash   | 90118560 | loni     | sakshi@gmail.com      | ganpati temple   | nagpur |
+|  5 | komal   | 75855554 | hadapsar | komal@gmail.com       | tarde gavatemala | mumbai |
++----+---------+----------+----------+-----------------------+------------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> update user set email='akashgavte@gmail.com' where id=4;
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from user;
++----+---------+----------+----------+-----------------------+------------------+--------+
+| id | name    | mob_no   | branch   | email                 | address          | city   |
++----+---------+----------+----------+-----------------------+------------------+--------+
+|  1 | utkarsh |   741492 | pune     | gavtemonika@gmail.com | marutimandir     | mumbai |
+|  2 | anuja   | 70574097 | uruli    | gavteanuja@gmail.com  | sortapvadiphata  | pune   |
+|  3 | sakshi  |   770969 | theur    | sakshi@gmail.com      | uk 123           | nashik |
+|  4 | akash   | 90118560 | loni     | akashgavte@gmail.com  | ganpati temple   | nagpur |
+|  5 | komal   | 75855554 | hadapsar | komal@gmail.com       | tarde gavatemala | mumbai |
++----+---------+----------+----------+-----------------------+------------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> update user set branch='kunjirwadi' where id=1;
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from user;
++----+---------+----------+------------+-----------------------+------------------+--------+
+| id | name    | mob_no   | branch     | email                 | address          | city   |
++----+---------+----------+------------+-----------------------+------------------+--------+
+|  1 | utkarsh |   741492 | kunjirwadi | gavtemonika@gmail.com | marutimandir     | mumbai |
+|  2 | anuja   | 70574097 | uruli      | gavteanuja@gmail.com  | sortapvadiphata  | pune   |
+|  3 | sakshi  |   770969 | theur      | sakshi@gmail.com      | uk 123           | nashik |
+|  4 | akash   | 90118560 | loni       | akashgavte@gmail.com  | ganpati temple   | nagpur |
+|  5 | komal   | 75855554 | hadapsar   | komal@gmail.com       | tarde gavatemala | mumbai |
++----+---------+----------+------------+-----------------------+------------------+--------+
+5 rows in set (0.08 sec)
+
+mysql> delete from user where id=3;
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select * from user;
++----+---------+----------+------------+-----------------------+------------------+--------+
+| id | name    | mob_no   | branch     | email                 | address          | city   |
++----+---------+----------+------------+-----------------------+------------------+--------+
+|  1 | utkarsh |   741492 | kunjirwadi | gavtemonika@gmail.com | marutimandir     | mumbai |
+|  2 | anuja   | 70574097 | uruli      | gavteanuja@gmail.com  | sortapvadiphata  | pune   |
+|  4 | akash   | 90118560 | loni       | akashgavte@gmail.com  | ganpati temple   | nagpur |
+|  5 | komal   | 75855554 | hadapsar   | komal@gmail.com       | tarde gavatemala | mumbai |
++----+---------+----------+------------+-----------------------+------------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> update user set mob_no=77744555 where id=1;
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from user;
++----+---------+----------+------------+-----------------------+------------------+--------+
+| id | name    | mob_no   | branch     | email                 | address          | city   |
++----+---------+----------+------------+-----------------------+------------------+--------+
+|  1 | utkarsh | 77744555 | kunjirwadi | gavtemonika@gmail.com | marutimandir     | mumbai |
+|  2 | anuja   | 70574097 | uruli      | gavteanuja@gmail.com  | sortapvadiphata  | pune   |
+|  4 | akash   | 90118560 | loni       | akashgavte@gmail.com  | ganpati temple   | nagpur |
+|  5 | komal   | 75855554 | hadapsar   | komal@gmail.com       | tarde gavatemala | mumbai |
++----+---------+----------+------------+-----------------------+------------------+--------+
+4 rows in set (0.04 sec)
+
+mysql> update user set mob_no=77553322,address='loni kalbhor' where id=5;
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from user;
++----+---------+----------+------------+-----------------------+-----------------+--------+
+| id | name    | mob_no   | branch     | email                 | address         | city   |
++----+---------+----------+------------+-----------------------+-----------------+--------+
+|  1 | utkarsh | 77744555 | kunjirwadi | gavtemonika@gmail.com | marutimandir    | mumbai |
+|  2 | anuja   | 70574097 | uruli      | gavteanuja@gmail.com  | sortapvadiphata | pune   |
+|  4 | akash   | 90118560 | loni       | akashgavte@gmail.com  | ganpati temple  | nagpur |
+|  5 | komal   | 77553322 | hadapsar   | komal@gmail.com       | loni kalbhor    | mumbai |
++----+---------+----------+------------+-----------------------+-----------------+--------+
+4 rows in set (0.00 sec)
+
+mysql>
