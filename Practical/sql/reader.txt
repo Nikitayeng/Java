@@ -1,0 +1,199 @@
+mysql> use Aniruddha
+Database changed
+mysql> select * from Officers;
++----+---------+---------+
+| id | Name    | Address |
++----+---------+---------+
+|  1 | Koushik | Dankuni |
+|  2 | Faizal  | Patna   |
+|  3 | Ananyal | Maldha  |
+|  4 | Ashoke  | Bankura |
++----+---------+---------+
+4 rows in set (0.05 sec)
+
+mysql> select * from Students;
++----+-----------+-------------+
+| id | Name      | Course_Name |
++----+-----------+-------------+
+|  1 | Ashoke    | JAVA        |
+|  3 | Kamalendu | JAVAWEBDEV  |
+|  5 | Jhon      | DOTNET      |
+|  7 | Rambo     | PYTHON      |
++----+-----------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select Officers.Name, Officers.Address, Students.Name from Officers INNER JOIN Students ON Officers.id = Students.id;
++---------+---------+-----------+
+| Name    | Address | Name      |
++---------+---------+-----------+
+| Koushik | Dankuni | Ashoke    |
+| Ananyal | Maldha  | Kamalendu |
++---------+---------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select Officers.Name, Officers.Address, Students.Course_Name from Officers LEFT JOIN Students ON Officers.id = Students.id;
++---------+---------+-------------+
+| Name    | Address | Course_Name |
++---------+---------+-------------+
+| Koushik | Dankuni | JAVA        |
+| Faizal  | Patna   | NULL        |
+| Ananyal | Maldha  | JAVAWEBDEV  |
+| Ashoke  | Bankura | NULL        |
++---------+---------+-------------+
+4 rows in set (0.04 sec)
+
+mysql> select Officers.Name, Officers.Address, Students.Name, Student.Course_Name from Officers RIGHT JOIN Students ON Officers.id = Students.id;
+ERROR 1054 (42S22): Unknown column 'Student.Course_Name' in 'field list'
+mysql> select Officers.Name, Officers.Address, Students.Name, Students.Course_Name from Officers RIGHT JOIN Students ON Officers.id = Students.id;
++---------+---------+-----------+-------------+
+| Name    | Address | Name      | Course_Name |
++---------+---------+-----------+-------------+
+| Koushik | Dankuni | Ashoke    | JAVA        |
+| Ananyal | Maldha  | Kamalendu | JAVAWEBDEV  |
+| NULL    | NULL    | Jhon      | DOTNET      |
+| NULL    | NULL    | Rambo     | PYTHON      |
++---------+---------+-----------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select Officers.id, Officers.Name, Officers.Address, Students.id, Students.Name, Students.Course_Name from Officers INNER JOIN Students ON Officers.id = Students.id;
++----+---------+---------+----+-----------+-------------+
+| id | Name    | Address | id | Name      | Course_Name |
++----+---------+---------+----+-----------+-------------+
+|  1 | Koushik | Dankuni |  1 | Ashoke    | JAVA        |
+|  3 | Ananyal | Maldha  |  3 | Kamalendu | JAVAWEBDEV  |
++----+---------+---------+----+-----------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select Officers.id, Officers.Name, Officers.Address, Students.id, Students.Name, Students.Course_Name from Officers CROSS JOIN Students ;
++----+---------+---------+----+-----------+-------------+
+| id | Name    | Address | id | Name      | Course_Name |
++----+---------+---------+----+-----------+-------------+
+|  4 | Ashoke  | Bankura |  1 | Ashoke    | JAVA        |
+|  3 | Ananyal | Maldha  |  1 | Ashoke    | JAVA        |
+|  2 | Faizal  | Patna   |  1 | Ashoke    | JAVA        |
+|  1 | Koushik | Dankuni |  1 | Ashoke    | JAVA        |
+|  4 | Ashoke  | Bankura |  3 | Kamalendu | JAVAWEBDEV  |
+|  3 | Ananyal | Maldha  |  3 | Kamalendu | JAVAWEBDEV  |
+|  2 | Faizal  | Patna   |  3 | Kamalendu | JAVAWEBDEV  |
+|  1 | Koushik | Dankuni |  3 | Kamalendu | JAVAWEBDEV  |
+|  4 | Ashoke  | Bankura |  5 | Jhon      | DOTNET      |
+|  3 | Ananyal | Maldha  |  5 | Jhon      | DOTNET      |
+|  2 | Faizal  | Patna   |  5 | Jhon      | DOTNET      |
+|  1 | Koushik | Dankuni |  5 | Jhon      | DOTNET      |
+|  4 | Ashoke  | Bankura |  7 | Rambo     | PYTHON      |
+|  3 | Ananyal | Maldha  |  7 | Rambo     | PYTHON      |
+|  2 | Faizal  | Patna   |  7 | Rambo     | PYTHON      |
+|  1 | Koushik | Dankuni |  7 | Rambo     | PYTHON      |
++----+---------+---------+----+-----------+-------------+
+16 rows in set (0.00 sec)
+
+mysql> Select Address, count (*) from Officers Group By Address;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) from Officers Group By Address' at line 1
+mysql> select Address, count(*) from Officers group by Address;
++---------+----------+
+| Address | count(*) |
++---------+----------+
+| Dankuni |        1 |
+| Patna   |        1 |
+| Maldha  |        1 |
+| Bankura |        1 |
++---------+----------+
+4 rows in set (0.04 sec)
+
+mysql> alter table Officers add column Working_hours int(10);
+Query OK, 0 rows affected, 1 warning (1.91 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> Select * from Officers;
++----+---------+---------+---------------+
+| id | Name    | Address | Working_hours |
++----+---------+---------+---------------+
+|  1 | Koushik | Dankuni |          NULL |
+|  2 | Faizal  | Patna   |          NULL |
+|  3 | Ananyal | Maldha  |          NULL |
+|  4 | Ashoke  | Bankura |          NULL |
++----+---------+---------+---------------+
+4 rows in set (0.00 sec)
+
+mysql> update Officers set Working_hours = '9' where id = 1;
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update Officers set Working_hours = '10' where id = 2;
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update Officers set Working_hours = '8' where id = 3;
+Query OK, 1 row affected (0.11 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update Officers set Working_hours = '8' where id = 4;
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>
+mysql> select * from Officers;
++----+---------+---------+---------------+
+| id | Name    | Address | Working_hours |
++----+---------+---------+---------------+
+|  1 | Koushik | Dankuni |             9 |
+|  2 | Faizal  | Patna   |            10 |
+|  3 | Ananyal | Maldha  |             8 |
+|  4 | Ashoke  | Bankura |             8 |
++----+---------+---------+---------------+
+4 rows in set (0.00 sec)
+
+mysql> select Name, sum(Working_hours) as "Total Working_hours" from Officers gruop by Name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'by Name' at line 1
+mysql> select Name, sum(Working_hours) as "Total Working_hours" from Officers group by Name;
++---------+---------------------+
+| Name    | Total Working_hours |
++---------+---------------------+
+| Koushik |                   9 |
+| Faizal  |                  10 |
+| Ananyal |                   8 |
+| Ashoke  |                   8 |
++---------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> select Name, min(Working_hours) as "Total Working_hours" from Officers group by Name;
++---------+---------------------+
+| Name    | Total Working_hours |
++---------+---------------------+
+| Koushik |                   9 |
+| Faizal  |                  10 |
+| Ananyal |                   8 |
+| Ashoke  |                   8 |
++---------+---------------------+
+4 rows in set (0.04 sec)
+
+mysql> select Name, max(Working_hours) as "Total Working_hours" from Officers group by Name;
++---------+---------------------+
+| Name    | Total Working_hours |
++---------+---------------------+
+| Koushik |                   9 |
+| Faizal  |                  10 |
+| Ananyal |                   8 |
+| Ashoke  |                   8 |
++---------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> select Name, avg(Working_hours) as "Total Working_hours" from Officers group by Name;
++---------+---------------------+
+| Name    | Total Working_hours |
++---------+---------------------+
+| Koushik |              9.0000 |
+| Faizal  |             10.0000 |
+| Ananyal |              8.0000 |
+| Ashoke  |              8.0000 |
++---------+---------------------+
+4 rows in set (0.05 sec)
+
+mysql> select Name, sum(Working_hours) as "Total Working_hours" from Officers group by Name having sum(Working_hours)>8;
++---------+---------------------+
+| Name    | Total Working_hours |
++---------+---------------------+
+| Koushik |                   9 |
+| Faizal  |                  10 |
++---------+---------------------+
+2 rows in set (0.04 sec)
