@@ -1,4 +1,4 @@
-mysql> use Aniruddha
+mysql> use Nikita 
 Database changed
 mysql> select * from Officers;
 +----+---------+---------+
