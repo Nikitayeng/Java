@@ -3,7 +3,7 @@ package com;
 public class account {
 
 	
-		public class Account {
+		
 			  
 			private int balance=600;
 			public int getBalance() {
@@ -14,6 +14,6 @@ public class account {
 			}
 		}
 		
-	}
+	
 
 
